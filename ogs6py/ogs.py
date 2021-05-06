@@ -72,15 +72,17 @@ class OGS(object):
             cmd += self.loadmkl + " && "
         cmd += f"{ogs_path} {self.prjfile} > {self.logfile}"
         startt = time.time()
-        returncode = subprocess.run([cmd], shell=True, executable="/bin/bash")
-        stopt = time.time()
-        difft = stopt - startt
-        if returncode.returncode == 0:
-            print(f"OGS finished with project file {self.prjfile}.")
-            print(f"Execution took {difft} s")
-        else:
-            print(f"OGS execution not successfull. Error code: {returncode.returncode}")
-            raise RuntimeError
+	p = subprocess.run([cmd], shell=False, executable="/bin/bash")
+        return p
+	#returncode = subprocess.run([cmd], shell=True, executable="/bin/bash")
+        #stopt = time.time()
+        #difft = stopt - startt
+        #if returncode.returncode == 0:
+        #    print(f"OGS finished with project file {self.prjfile}.")
+        #    print(f"Execution took {difft} s")
+        #else:
+        #    print(f"OGS execution not successfull. Error code: {returncode.returncode}")
+        #    raise RuntimeError
 
     def __dict2xml(self, parent, dictionary):
         for entry in dictionary:
