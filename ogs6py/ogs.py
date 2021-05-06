@@ -72,7 +72,7 @@ class OGS(object):
             cmd += self.loadmkl + " && "
         cmd += f"{ogs_path} {self.prjfile} > {self.logfile}"
         startt = time.time()
-	p = subprocess.run([cmd], shell=False, executable="/bin/bash")
+	p = subprocess.Popen([cmd], shell=False, executable="/bin/bash")
         return p
 	#returncode = subprocess.run([cmd], shell=True, executable="/bin/bash")
         #stopt = time.time()
